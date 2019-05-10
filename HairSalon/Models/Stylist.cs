@@ -8,7 +8,6 @@ namespace HairSalon.Models
   {
     public int Id {get; set;}
     public string Name {get; set;}
-    //public bool Specialization {get; set;}
     public string DaysAvailable {get; set;}
 
     public Stylist (string name, string daysAvailable, int id = 0) {
@@ -30,7 +29,7 @@ namespace HairSalon.Models
       {
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
-        string daysAvailable = rdr.GetString(3);
+        string daysAvailable = rdr.GetString(2);
 
         Stylist newStylist = new Stylist(name, daysAvailable, id);
         allStylists.Add(newStylist);
@@ -119,7 +118,7 @@ namespace HairSalon.Models
       while (rdr.Read())
       {
         stylistName = rdr.GetString(1);
-        stylistDaysAvailable = rdr.GetString(3);
+        stylistDaysAvailable = rdr.GetString(2);
         stylistId = rdr.GetInt32(0);
       }
 
