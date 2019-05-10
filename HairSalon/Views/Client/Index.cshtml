@@ -20,7 +20,7 @@
     {
       @foreach (Client client in Model)
       {
-        <li><a href='/stylist/@client.StylistId/@client.Id'>@client.Name</a></li>
+        <li><a href='/stylist/@client.StylistId/client/@client.Id'>@client.Name</a></li>
       }
     }
     </ul>
