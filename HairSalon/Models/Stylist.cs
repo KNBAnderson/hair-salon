@@ -120,7 +120,7 @@ namespace HairSalon.Models
       while (rdr.Read())
       {
         stylistName = rdr.GetString(1);
-        stylistDaysAvailable = rdr.GetBoolean(3);
+        stylistDaysAvailable = rdr.GetString(3);
         stylistId = rdr.GetInt32(0);
       }
 
