@@ -28,11 +28,11 @@ namespace HairSalon.Controllers
       newStylist.Save();
       return RedirectToAction("Index");
     }
-    
+
     [HttpGet("/stylist/{id}")]
     public ActionResult Index(int id)
     {
-      List<Client> allClients = Client.GetStylistList(id);
+      List<Client> allClients = Client.FindStylistList(id);
       return View("~/Client/", allClients);
     }
 

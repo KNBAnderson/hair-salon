@@ -1,41 +1,41 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using FoodGuide.Models;
+using HairSalon.Models;
 using System;
 
-namespace FoodGuide.Controllers
+namespace HairSalon.Controllers
 {
-  public class RestaurantController : Controller
+  public class ClientController : Controller
   {
 
-    [HttpGet("cuisine/{id}/restaurant")]
+    [HttpGet("stylist/{id}/client")]
     public ActionResult Index(int id)
     {
-      List<Restaurant> allRestaurants = Restaurant.FindCuisineList(id);
-      return View(allRestaurants);
+      List<Client> allClients = Client.FindStylistList(id);
+      return View(allClients);
     }
 
-    [HttpGet("/restaurant/new")]
+    [HttpGet("/client/new")]
     public ActionResult New()
     {
       return View();
     }
-    // [HttpGet("/restaurant/{id}")]
+    // [HttpGet("/client/{id}")]
     // public ActionResult Show()
     // {
     // }
 
-    // [HttpGet("cuisine/{id}/restaurant")]
+    // [HttpGet("stylist/{id}/client")]
     // public ActionResult index(int id)
     // {
-    //   List<Restaurant> allRestaurants = Restaurant.GetCuisineList(id);
-    //   return View(allRestaurants);
+    //   List<Client> allClients = Client.GetStylistList(id);
+    //   return View(allClients);
     // }
 
-    // [HttpPost("/cuisine/{id}/delete")]
+    // [HttpPost("/stylist/{id}/delete")]
     // public ActionResult Destroy(int id)
     // {
-    //   Cuisine.RemoveHellBeast(id);
+    //   Stylist.RemoveHellBeast(id);
     //   return RedirectToAction("Index");
     // }
   }

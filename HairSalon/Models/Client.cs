@@ -34,11 +34,11 @@ namespace HairSalon.Models
       {
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
-        int nextAppointment = rdr.GetDateTime(2);
+        DateTime nextAppointment = rdr.GetDateTime(2);
         int stylistId = rdr.GetInt32(3);
 
-        Client newRestaurant = new Client(name, stylistId, nextAppointment, id);
-        allClients.Add(newRestaurant);
+        Client newClient = new Client(name, stylistId, nextAppointment, id);
+        allClients.Add(newClient);
       }
       conn.Close();
 
@@ -60,13 +60,13 @@ namespace HairSalon.Models
 
       while(rdr.Read())
       {
-        int id = rdr.GetInt32(0);
+        int id1 = rdr.GetInt32(0);
         string name = rdr.GetString(1);
-        int nextAppointment = rdr.GetDateTime(2);
+        DateTime nextAppointment = rdr.GetDateTime(2);
         int stylistId = rdr.GetInt32(3);
 
-        Client newRestaurant = new Client(name, stylistId, nextAppointment, id);
-        stylistClients.Add(newRestaurant);
+        Client newClient = new Client(name, stylistId, nextAppointment, id1);
+        stylistClients.Add(newClient);
       }
       conn.Close();
       if (conn != null)
@@ -90,20 +90,20 @@ namespace HairSalon.Models
       }
     }
 
-    public override bool Equals(System.Object otherRestaurant)
+    public override bool Equals(System.Object otherClient)
     {
-      if (!(otherRestaurant is Client))
+      if (!(otherClient is Client))
       {
         return false;
       }
       else
       {
-        Client newRestaurant = (Client) otherRestaurant;
-        bool idEquality = (this.Id == newRestaurant.Id);
-        bool nameEquality = (this.Name == newRestaurant.Name);
-        bool stylistIdEquality = (this.StylistId == newRestaurant.StylistId);
-        bool priceEquality = (this.NextAppointment == newRestaurant.NextAppointment);
-        return (idEquality && nameEquality && stylistIdEquality);
+        Client newClient = (Client) otherClient;
+        bool idEquality = (this.Id == newClient.Id);
+        bool nameEquality = (this.Name == newClient.Name);
+        bool stylistIdEquality = (this.StylistId == newClient.StylistId);
+        bool nextAppointmentEquality = (this.NextAppointment == newClient.NextAppointment);
+        return (idEquality && nameEquality && stylistIdEquality && nextAppointmentEquality);
       }
     }
 
@@ -112,18 +112,18 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"INSERT INTO `client` (`name`, `stylistId`, `nextAppointment`) VALUES (@RestaurantName, @RestaurantStylistId, @RestaurantNextAppointment);";
+    cmd.CommandText = @"INSERT INTO `client` (`name`, `stylistId`, `nextAppointment`) VALUES (@ClientName, @ClientStylistId, @ClientNextAppointment);";
 
       MySqlParameter name = new MySqlParameter();
-      name.ParameterName = "@RestaurantName";
+      name.ParameterName = "@ClientName";
       name.Value = this.Name;
 
       MySqlParameter stylistId = new MySqlParameter();
-      stylistId.ParameterName = "@RestaurantStylistId";
+      stylistId.ParameterName = "@ClientStylistId";
       stylistId.Value = this.StylistId;
 
       MySqlParameter NextAppointment = new MySqlParameter();
-      NextAppointment.ParameterName = "@RestaurantStylistId";
+      NextAppointment.ParameterName = "@ClientStylistId";
       NextAppointment.Value = this.NextAppointment;
 
       cmd.Parameters.Add(name);
@@ -151,26 +151,27 @@ namespace HairSalon.Models
       thisId.Value = id;
       cmd.Parameters.Add(thisId);
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
-      string restaurantName = "";
-      int restaurantStylistId = 0;
-      int restaurantId = 0;
-      int restaurantNextAppointment = 0;
+      string clientName = "";
+      int clientStylistId = 0;
+      int clientId = 0;
+      DateTime clientNextAppointment =  new DateTime(1000, 01, 01);
 
       while (rdr.Read())
       {
-        restaurantId = rdr.GetInt32(0);
-        restaurantName = rdr.GetString(1);
-        restaurantStylistId = rdr.GetInt32(2);
-        restaurantNextAppointment = rdr.GetInt32(3);
+
+        clientId = rdr.GetInt32(0);
+        clientName = rdr.GetString(1);
+        clientNextAppointment = rdr.GetDateTime(2);
+        clientStylistId = rdr.GetInt32(3);
       }
 
-      Client foundRestaurant = new Client(restaurantName, restaurantStylistId, restaurantId);
+      Client foundClient = new Client(clientName, clientStylistId, clientNextAppointment,clientId);
       conn.Close();
       if (conn != null)
       {
         conn.Dispose();
       }
-      return foundRestaurant;
+      return foundClient;
     }
   }
 }
