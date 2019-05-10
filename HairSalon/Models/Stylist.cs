@@ -11,10 +11,9 @@ namespace HairSalon.Models
     //public bool Specialization {get; set;}
     public string DaysAvailable {get; set;}
 
-    public Stylist (string name, string daysAvailable, /*string imageURL,*/ int id = 0) {
+    public Stylist (string name, string daysAvailable, int id = 0) {
       Name = name;
       DaysAvailable = daysAvailable;
-      //ImageURL = imageURL;
       Id = id;
     }
 

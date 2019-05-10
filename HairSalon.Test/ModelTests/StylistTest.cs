@@ -6,9 +6,9 @@ using HairSalon.Models;
 namespace HairSalon.Tests
 {
     [TestClass]
-    public class CategoryTests : IDisposable
+    public class StylistTests : IDisposable
     {
-        public CategoryTests()
+        public StylistTests()
         {
             DBConfiguration.ConnectionString = "server=localhost;user id=root;port=8889;database=katlin_anderson_test;default command timeout=50;";
         }
@@ -24,7 +24,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Equals_ReturnsTrueIfNamesAreTheSame_Category()
+        public void Equals_ReturnsTrueIfNamesAreTheSame_Stylist()
         {
             //Arrange, Act
             Stylist firstStylist = new Stylist("Bob", "Monday, Wednesday, and Friday");
@@ -33,66 +33,66 @@ namespace HairSalon.Tests
             //Assert
             Assert.AreEqual(firstStylist, secondStylist);
         }
-        //
+
+        [TestMethod]
+        public void Save_SavesStylistToDatabase_StylistList()
+        {
+            //Arrange
+            Stylist testStylist = new Stylist("Sally", "Saturday and Suday");
+            testStylist.Save();
+
+            //Act
+            List<Stylist> result = Stylist.GetAll();
+            List<Stylist> testList = new List<Stylist>{testStylist};
+        
+            //Assert
+            CollectionAssert.AreEqual(testList, result);
+        }
+
         // [TestMethod]
-        // public void Save_SavesCategoryToDatabase_CategoryList()
+        // public void Save_DatabaseAssignsIdToStylist_Id()
         // {
         //     //Arrange
-        //     Stylist testCategory = new Stylist("Household chores");
-        //     testCategory.Save();
+        //     Stylist testStylist = new Stylist("Household chores");
+        //     testStylist.Save();
         //
         //     //Act
-        //     List<Stylist> result = Stylist.GetAll();
-        //     List<Stylist> testList = new List<Stylist>{testCategory};
+        //     Stylist savedStylist = Stylist.GetAll()[0];
         //
-        //     //Assert
-        //     CollectionAssert.AreEqual(testList, result);
-        // }
-        //
-        // [TestMethod]
-        // public void Save_DatabaseAssignsIdToCategory_Id()
-        // {
-        //     //Arrange
-        //     Stylist testCategory = new Stylist("Household chores");
-        //     testCategory.Save();
-        //
-        //     //Act
-        //     Stylist savedCategory = Stylist.GetAll()[0];
-        //
-        //     int result = savedCategory.GetId();
-        //     int testId = testCategory.GetId();
+        //     int result = savedStylist.GetId();
+        //     int testId = testStylist.GetId();
         //
         //     //Assert
         //     Assert.AreEqual(testId, result);
         // }
         //
         // [TestMethod]
-        // public void Find_FindsCategoryInDatabase_Category()
+        // public void Find_FindsStylistInDatabase_Stylist()
         // {
         //     //Arrange
-        //     Stylist testCategory = new Stylist("Household chores");
-        //     testCategory.Save();
+        //     Stylist testStylist = new Stylist("Household chores");
+        //     testStylist.Save();
         //
         //     //Act
-        //     Stylist foundCategory = Stylist.Find(testCategory.GetId());
+        //     Stylist foundStylist = Stylist.Find(testStylist.GetId());
         //
         //     //Assert
-        //     Assert.AreEqual(testCategory, foundCategory);
+        //     Assert.AreEqual(testStylist, foundStylist);
         // }
         //
         // [TestMethod]
-        // public void GetItems_RetrievesAllItemsWithCategory_ItemList()
+        // public void GetItems_RetrievesAllItemsWithStylist_ItemList()
         // {
         //     //Arrange, Act
         //     DateTime itemDueDate =  new DateTime(1999, 12, 24);
-        //     Stylist testCategory = new Stylist("Household chores");
-        //     testCategory.Save();
-        //     Item firstItem = new Item("Mow the lawn", itemDueDate, testCategory.GetId());
+        //     Stylist testStylist = new Stylist("Household chores");
+        //     testStylist.Save();
+        //     Item firstItem = new Item("Mow the lawn", itemDueDate, testStylist.GetId());
         //     firstItem.Save();
-        //     Item secondItem = new Item("Do the dishes", itemDueDate, testCategory.GetId());
+        //     Item secondItem = new Item("Do the dishes", itemDueDate, testStylist.GetId());
         //     secondItem.Save();
         //     List<Item> testItemList = new List<Item> {firstItem, secondItem};
-        //     List<Item> resultItemList = testCategory.GetItems();
+        //     List<Item> resultItemList = testStylist.GetItems();
         //
         //     //Assert
         //     CollectionAssert.AreEqual(testItemList, resultItemList);
