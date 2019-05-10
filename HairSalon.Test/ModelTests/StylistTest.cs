@@ -23,27 +23,27 @@ namespace HairSalon.Tests
             Assert.AreEqual(0, result);
         }
 
-        // [TestMethod]
-        // public void Equals_ReturnsTrueIfNamesAreTheSame_Category()
-        // {
-        //     //Arrange, Act
-        //     Category firstCategory = new Category("Household chores");
-        //     Category secondCategory = new Category("Household chores");
-        //
-        //     //Assert
-        //     Assert.AreEqual(firstCategory, secondCategory);
-        // }
+        [TestMethod]
+        public void Equals_ReturnsTrueIfNamesAreTheSame_Category()
+        {
+            //Arrange, Act
+            Stylist firstStylist = new Stylist("Bob", "Monday, Wednesday, and Friday");
+            Stylist secondStylist = new Stylist("Bob", "Monday, Wednesday, and Friday");
+
+            //Assert
+            Assert.AreEqual(firstStylist, secondStylist);
+        }
         //
         // [TestMethod]
         // public void Save_SavesCategoryToDatabase_CategoryList()
         // {
         //     //Arrange
-        //     Category testCategory = new Category("Household chores");
+        //     Stylist testCategory = new Stylist("Household chores");
         //     testCategory.Save();
         //
         //     //Act
-        //     List<Category> result = Category.GetAll();
-        //     List<Category> testList = new List<Category>{testCategory};
+        //     List<Stylist> result = Stylist.GetAll();
+        //     List<Stylist> testList = new List<Stylist>{testCategory};
         //
         //     //Assert
         //     CollectionAssert.AreEqual(testList, result);
@@ -53,11 +53,11 @@ namespace HairSalon.Tests
         // public void Save_DatabaseAssignsIdToCategory_Id()
         // {
         //     //Arrange
-        //     Category testCategory = new Category("Household chores");
+        //     Stylist testCategory = new Stylist("Household chores");
         //     testCategory.Save();
         //
         //     //Act
-        //     Category savedCategory = Category.GetAll()[0];
+        //     Stylist savedCategory = Stylist.GetAll()[0];
         //
         //     int result = savedCategory.GetId();
         //     int testId = testCategory.GetId();
@@ -70,11 +70,11 @@ namespace HairSalon.Tests
         // public void Find_FindsCategoryInDatabase_Category()
         // {
         //     //Arrange
-        //     Category testCategory = new Category("Household chores");
+        //     Stylist testCategory = new Stylist("Household chores");
         //     testCategory.Save();
         //
         //     //Act
-        //     Category foundCategory = Category.Find(testCategory.GetId());
+        //     Stylist foundCategory = Stylist.Find(testCategory.GetId());
         //
         //     //Assert
         //     Assert.AreEqual(testCategory, foundCategory);
@@ -85,7 +85,7 @@ namespace HairSalon.Tests
         // {
         //     //Arrange, Act
         //     DateTime itemDueDate =  new DateTime(1999, 12, 24);
-        //     Category testCategory = new Category("Household chores");
+        //     Stylist testCategory = new Stylist("Household chores");
         //     testCategory.Save();
         //     Item firstItem = new Item("Mow the lawn", itemDueDate, testCategory.GetId());
         //     firstItem.Save();
@@ -101,7 +101,7 @@ namespace HairSalon.Tests
       public void Dispose()
       {
           // Item.ClearAll();
-          // Category.DeleteAll();
+          // Stylist.DeleteAll();
       }
 
     }
