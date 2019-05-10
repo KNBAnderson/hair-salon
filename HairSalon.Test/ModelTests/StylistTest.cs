@@ -80,24 +80,6 @@ namespace HairSalon.Tests
             Assert.AreEqual(testStylist, foundStylist);
         }
 
-        // [TestMethod]
-        // public void GetItems_RetrievesAllItemsWithStylist_ItemList()
-        // {
-        //     //Arrange, Act
-        //     DateTime itemDueDate =  new DateTime(1999, 12, 24);
-        //     Stylist testStylist = new Stylist("Household chores");
-        //     testStylist.Save();
-        //     Item firstItem = new Item("Mow the lawn", itemDueDate, testStylist.GetId());
-        //     firstItem.Save();
-        //     Item secondItem = new Item("Do the dishes", itemDueDate, testStylist.GetId());
-        //     secondItem.Save();
-        //     List<Item> testItemList = new List<Item> {firstItem, secondItem};
-        //     List<Item> resultItemList = testStylist.GetItems();
-        //
-        //     //Assert
-        //     CollectionAssert.AreEqual(testItemList, resultItemList);
-        // }
-
       public void Dispose()
       {
           Stylist.ClearAll();
