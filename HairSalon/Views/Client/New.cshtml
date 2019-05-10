@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Add Stylist</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='~/css/styles.css' type="text/css">
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Add a new client</h1>
+    </div>
+    <form action="/stylist/{id}/client" method="post">
+    <label for="name">Client's name:</label>
+    <input id="name" name="name" type="text"><br>
+
+    <label for="nextAppointment">When is their next appointment?</label>
+    <input id="nextAppointment" name="nextAppointment" type="text"><br>
+    <button type="submit" class="btn btn-dark">Add new client</button>
+    </form>
+    <br>
+    <a href="/stylist" class="btn btn-dark">Back to your list of stylists</a>
+    <a href="/" class="btn btn-dark">Back to homepage</a>
+  </div>
+</body>
+</html>

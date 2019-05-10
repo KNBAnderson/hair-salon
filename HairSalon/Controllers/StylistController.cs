@@ -28,13 +28,15 @@ namespace HairSalon.Controllers
       newStylist.Save();
       return RedirectToAction("Index");
     }
-    // [HttpGet("/stylist/{id}")]
-    // public ActionResult Index(int id)
-    // {
-    //   List<Client> allClients = Client.GetStylistList(id);
-    //   return View("~/Client/", allClients);
-    // }
+    
+    [HttpGet("/stylist/{id}")]
+    public ActionResult Index(int id)
+    {
+      List<Client> allClients = Client.GetStylistList(id);
+      return View("~/Client/", allClients);
+    }
 
+    //Stretch Goals
     // [HttpPost("/stylist/{id}/delete")]
     // public ActionResult Destroy(int id)
     // {
