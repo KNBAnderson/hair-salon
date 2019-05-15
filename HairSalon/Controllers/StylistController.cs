@@ -29,13 +29,13 @@ namespace HairSalon.Controllers
       return RedirectToAction("Index");
     }
 
-    [HttpGet("/stylist/{id}")]
-    public ActionResult Show(int id)
+    [HttpGet("/stylist/{stylistId}")]
+    public ActionResult Show(int stylistId)
     {
-       Dictionary<string, object> model = new Dictionary<string, object>();
-      Stylist selectedStylist = Stylist.Find(id);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist selectedStylist = Stylist.Find(stylistId);
       model.Add("stylist", selectedStylist);
-      List<Client> allClients = Client.FindStylistList(id);
+      List<Client> allClients = Client.FindStylistList(stylistId);
       model.Add("clientList", allClients);
       return View(model);
     }

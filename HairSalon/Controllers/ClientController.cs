@@ -15,21 +15,22 @@ namespace HairSalon.Controllers
       return View(allClients);
     }
 
-//Whyyyyyyyyy :(
     [HttpGet("/stylist/{id}/client/new")]
     public ActionResult New()
     {
       return View();
     }
 
-    [HttpPost("/stylist/{id}/client")]
-    public ActionResult Create(string name, int id, DateTime nextAppointment)
+    [HttpPost("/stylist/{stylistId}/client")]
+    public ActionResult Create(string name, int stylistId, DateTime nextAppointment)
     {
-      Client newClient = new Client(name, id, nextAppointment);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist selectedStylist = Stylist.Find(stylistId);
+      model.Add("stylist", selectedStylist);
+      Client newClient = new Client(name, stylistId, nextAppointment);
       newClient.Save();
-      return RedirectToAction("Index");
+      return View("Show", "Stylist", stylistId);
     }
-
 
     // [HttpGet("/client/{id}")]
     // public ActionResult Show()

@@ -123,7 +123,7 @@ namespace HairSalon.Models
       stylistId.Value = this.StylistId;
 
       MySqlParameter NextAppointment = new MySqlParameter();
-      NextAppointment.ParameterName = "@ClientStylistId";
+      NextAppointment.ParameterName = "@ClientNextAppointment";
       NextAppointment.Value = this.NextAppointment;
 
       cmd.Parameters.Add(name);
