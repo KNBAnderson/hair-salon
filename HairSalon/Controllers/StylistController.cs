@@ -30,10 +30,14 @@ namespace HairSalon.Controllers
     }
 
     [HttpGet("/stylist/{id}")]
-    public ActionResult Index(int id)
+    public ActionResult Show(int id)
     {
+       Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist selectedStylist = Stylist.Find(id);
+      model.Add("stylist", selectedStylist);
       List<Client> allClients = Client.FindStylistList(id);
-      return View("~/Client/", allClients);
+      model.Add("clientList", allClients);
+      return View(model);
     }
 
     //Stretch Goals
