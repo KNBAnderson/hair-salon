@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body class="container">
-    <h1>@Model["stylist"].Name 's clients include:</h1>
+    <h1>@Model["stylist"].Name's clients include:</h1>
 
     <ul>
     @if (Model["clientList"].Count == 0)
@@ -18,7 +18,7 @@
     }
     @if(Model["clientList"].Count != 0)
     {
-      @foreach (Client client in Model)
+      @foreach (Client client in Model["clientList"])
       {
         <li><a href='/stylist/@client.StylistId/client/@client.Id'>@client.Name</a></li>
       }

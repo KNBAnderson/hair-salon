@@ -8,17 +8,29 @@ namespace HairSalon.Controllers
   public class ClientController : Controller
   {
 
-    [HttpGet("/stylist/{id}/client")]
-    public ActionResult Index(int id)
+    // [HttpGet("/stylist/{stylistId}/client")]
+    // public ActionResult Index(int stylistId)
+    // {
+    //   List<Client> allClients = Client.FindStylistList(stylistId);
+    //   return View(allClients);
+    // }
+
+    [HttpGet("/stylist/{stylistId}/client/new")]
+    public ActionResult New(int stylistId)
     {
-      List<Client> allClients = Client.FindStylistList(id);
-      return View(allClients);
+      Stylist stylist = Stylist.Find(stylistId);
+      return View(stylist);
     }
 
-    [HttpGet("/stylist/{id}/client/new")]
-    public ActionResult New()
+    [HttpGet("/stylist/{stylistId}/client/{clientId}")]
+    public ActionResult Show(int stylistId, int clientId)
     {
-      return View();
+      Client client = Client.Find(clientId);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist stylist = Stylist.Find(stylistId);
+      model.Add("client", client);
+      model.Add("stylist", stylist);
+      return View(model);
     }
 
     // [HttpGet("/client/{id}")]
@@ -33,11 +45,6 @@ namespace HairSalon.Controllers
     //   return View(allClients);
     // }
 
-    // [HttpPost("/stylist/{id}/delete")]
-    // public ActionResult Destroy(int id)
-    // {
-    //   Stylist.RemoveHellBeast(id);
-    //   return RedirectToAction("Index");
-    // }
+
   }
 }

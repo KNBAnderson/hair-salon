@@ -26,7 +26,8 @@ namespace HairSalon.Controllers
     {
       Stylist newStylist = new Stylist(name, daysAvailable);
       newStylist.Save();
-      return RedirectToAction("Index");
+      List<Stylist> allStylists = Stylist.GetAll();
+      return RedirectToAction("Index", allStylists);
     }
 
     [HttpGet("/stylist/{stylistId}")]
@@ -49,7 +50,9 @@ namespace HairSalon.Controllers
       model.Add("stylist", selectedStylist);
       Client newClient = new Client(name, stylistId, nextAppointment);
       newClient.Save();
-      return View("Show");
+      List<Client> allClients = Client.FindStylistList(stylistId);
+      model.Add("clientList", allClients);
+      return View("Show", model);
     }
 
     //Stretch Goals
