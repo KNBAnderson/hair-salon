@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body class="container">
-    <h1>@Model["stylist"].Name's clients include:</h1>
+    <h1>@Model["stylist"].Name</h1>
+    <p>@Model["stylist"].Name is available @Model["stylist"].DaysAvailable</p>
 
     <ul>
     @if (Model["clientList"].Count == 0)

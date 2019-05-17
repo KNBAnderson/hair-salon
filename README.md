@@ -9,6 +9,15 @@ _A program program that data about stylist and clients, and organizes it in a he
 ## Setup/Installation Requirements
 
 * _Clone from GitHub_
+* _> CREATE DATABASE katlin_anderson;_
+* _> USE katlin_anderson;_
+* _> CREATE TABLE stylist (id serial PRIMARY KEY, name VARCHAR(255). daysAvailable DATE, );_
+* _> CREATE TABLE client (id serial PRIMARY KEY, name VARCHAR(255), nextAppointment DATE, stylistId int);_
+* _> CREATE TABLE specialties (id serial PRIMARY KEY, specialty VARCHAR(255));_
+* _Start MAMP and click Open WebStart page in the MAMP window._
+* _In the website you're taken to, select phpMyAdmin from the Tools dropdown._
+* _Select the Import tab._
+* _Select your database file, and click Go._
 * _$ dotnet restore_
 * _$ dotnet build_
 * _$ dotnet run_

@@ -92,7 +92,6 @@ namespace HairSalon.Models
       cmd.Parameters.Add(daysAvailable);
       cmd.ExecuteNonQuery();
       Id = (int) cmd.LastInsertedId;
-      // more logic will go here in a moment
       conn.Close();
       if (conn != null)
       {
