@@ -14,11 +14,9 @@
     <ul>
 
         <li>@Model["client"].Name's next appointment is on @Model["client"].NextAppointment</li>
-      }
-    }
     </ul>
 
-    <a href="/stylist/@Model["stylist"].Id/client/new">Add a client this stylist's list</a>
-
+    <a href="/stylist/@Model["stylist"].Id/client" class="btn btn-dark">Return to @Model["stylist"].Name's client list</a>
+    <a href="/stylist" class="btn btn-dark">Return to list of stylists</a>
     </html>
   </body>
