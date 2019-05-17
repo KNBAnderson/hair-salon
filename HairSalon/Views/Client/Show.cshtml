@@ -1,0 +1,24 @@
+@using HairSalon.Models;
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>View Clien Details</title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="~/css/styles.css">
+  </head>
+  <body class="container">
+    <h1>@Model["client"].Name's details:</h1>
+
+    <ul>
+
+        <li>@Model["client"].Name's next appointment is on @Model["client"].NextAppointment</li>
+      }
+    }
+    </ul>
+
+    <a href="/stylist/@Model["stylist"].Id/client/new">Add a client this stylist's list</a>
+
+    </html>
+  </body>
