@@ -104,12 +104,14 @@ namespace HairSalon.Models
       }
     }
 
+
+
     public void Save()
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"INSERT INTO `client` (`name`, `stylistId`, `nextAppointment`) VALUES (@ClientName, @ClientStylistId, @ClientNextAppointment);";
+    cmd.CommandText = @"INSERT INTO `client` (`name`, `nextAppointment`, `stylistId`) VALUES (@ClientName,  @ClientNextAppointment, @ClientStylistId);";
 
       MySqlParameter name = new MySqlParameter();
       name.ParameterName = "@ClientName";
@@ -119,16 +121,15 @@ namespace HairSalon.Models
       stylistId.ParameterName = "@ClientStylistId";
       stylistId.Value = this.StylistId;
 
-      MySqlParameter NextAppointment = new MySqlParameter();
-      NextAppointment.ParameterName = "@ClientNextAppointment";
-      NextAppointment.Value = this.NextAppointment;
+      MySqlParameter nextAppointment = new MySqlParameter();
+      nextAppointment.ParameterName = "@ClientNextAppointment";
+      nextAppointment.Value = this.NextAppointment;
 
       cmd.Parameters.Add(name);
       cmd.Parameters.Add(stylistId);
-      cmd.Parameters.Add(NextAppointment);
+      cmd.Parameters.Add(nextAppointment);
       cmd.ExecuteNonQuery();
       Id = (int) cmd.LastInsertedId;
-      // more logic will go here in a moment
       conn.Close();
       if (conn != null)
       {

@@ -13,15 +13,19 @@ namespace HairSalon.Tests
             DBConfiguration.ConnectionString = "server=localhost;user id=root;port=8889;database=katlin_anderson_test;default command timeout=50;";
         }
 
-        // [TestMethod]
-        // public void GetAll_CategoriesEmptyAtFirst_0()
-        // {
-        //     //Arrange, Act
-        //     int result = Stylist.GetAll().Count;
-        //
-        //     //Assert
-        //     Assert.AreEqual(0, result);
-        // }
+
+        [TestMethod]
+        public void GetAll_ReturnsEmptyStylistList_0()
+        {
+          //Arrange
+          List<Stylist> newList = new List<Stylist> { };
+
+          //Act
+          List<Stylist> result = Stylist.GetAll();
+
+          //Assert
+          CollectionAssert.AreEqual(newList, result);
+        }
 
         [TestMethod]
         public void Equals_ReturnsTrueIfNamesAreTheSame_Stylist()
