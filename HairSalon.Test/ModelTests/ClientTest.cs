@@ -56,7 +56,7 @@ namespace HairSalon.Tests
       //Assert
       CollectionAssert.AreEqual(newList, result);
     }
-
+//Something is clearly wrong with my Equals override
     [TestMethod]
     public void Find_ReturnsCorrectClientFromDatabase_Client()
     {
@@ -70,7 +70,7 @@ namespace HairSalon.Tests
       //Assert
       Assert.AreEqual(testClient, foundClient);
     }
-
+//yet it passes
     [TestMethod]
     public void Equals_ReturnsTrueIfNamesAreTheSame_Client()
     {
@@ -82,94 +82,58 @@ namespace HairSalon.Tests
       // Assert
       Assert.AreEqual(firstClient, secondClient);
     }
+//Assuming this is another Equals override issue
+    [TestMethod]
+    public void Save_SavesToDatabase_ClientList()
+    {
+      //Arrange
+      DateTime newDateTime = new DateTime(2001);
+      Client testClient = new Client("Sally", 1, newDateTime);
 
-    // [TestMethod]
-    // public void Save_SavesToDatabase_ClientList()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Mow the lawn");
-    //
-    //   //Act
-    //   testClient.Save();
-    //   List<Client> result = Client.GetAll();
-    //   List<Client> testList = new List<Client>{testClient};
-    //
-    //   //Assert
-    //   CollectionAssert.AreEqual(testList, result);
-    // }
-    //
-    // [TestMethod]
-    // public void Save_AssignsIdToObject_Id()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Mow the lawn");
-    //
-    //   //Act
-    //   testClient.Save();
-    //   Client savedClient = Client.GetAll()[0];
-    //
-    //   int result = savedClient.GetId();
-    //   int testId = testClient.GetId();
-    //
-    //   //Assert
-    //   Assert.AreEqual(testId, result);
-    // }
-    //
+      //Act
+      testClient.Save();
+      List<Client> result = Client.GetAll();
+      List<Client> testList = new List<Client>{testClient};
+
+      //Assert
+      CollectionAssert.AreEqual(testList, result);
+    }
+
+    [TestMethod]
+    public void Save_AssignsIdToObject_Id()
+    {
+      //Arrange
+      DateTime newDateTime = new DateTime(2001);
+      Client testClient = new Client("Sally", 1, newDateTime);
+
+      //Act
+      testClient.Save();
+      Client savedClient = Client.GetAll()[0];
+
+      int result = savedClient.Id;
+      int testId = testClient.Id;
+
+      //Assert
+      Assert.AreEqual(testId, result);
+    }
+
     // [TestMethod]
     // public void Edit_UpdatesClientInDatabase_String()
     // {
     //   //Arrange
-    //   Client testClient = new Client("Walk the Dog");
+    //   DateTime newDateTime = new DateTime(2001);
+    //   Client testClient = new Client("Sally", 1, newDateTime);
     //   testClient.Save();
-    //   string secondName = "Mow the lawn";
+    //   string secondName = "Sandy";
     //
     //   //Act
     //   testClient.Edit(secondName);
-    //   string result = Client.Find(testClient.GetId()).GetName();
+    //   string result = Client.Find(testClient.Id).Name;
     //
     //   //Assert
     //   Assert.AreEqual(secondName, result);
     // }
-    //
-    // [TestMethod]
-    // public void GetCategories_ReturnsAllClientCategories_StylistList()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Mow the lawn");
-    //   testClient.Save();
-    //   Stylist testStylist1 = new Stylist("Home stuff");
-    //   testStylist1.Save();
-    //   Stylist testStylist2 = new Stylist("Work stuff");
-    //   testStylist2.Save();
-    //
-    //   //Act
-    //   testClient.AddStylist(testStylist1);
-    //   List<Stylist> result = testClient.GetCategories();
-    //   List<Stylist> testList = new List<Stylist> {testStylist1};
-    //
-    //   //Assert
-    //   CollectionAssert.AreEqual(testList, result);
-    // }
-    //
-    // [TestMethod]
-    // public void AddStylist_AddsStylistToClient_StylistList()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Mow the lawn");
-    //   testClient.Save();
-    //   Stylist testStylist = new Stylist("Home stuff");
-    //   testStylist.Save();
-    //
-    //   //Act
-    //   testClient.AddStylist(testStylist);
-    //
-    //   List<Stylist> result = testClient.GetCategories();
-    //   List<Stylist> testList = new List<Stylist>{testStylist};
-    //
-    //   //Assert
-    //   CollectionAssert.AreEqual(testList, result);
-    // }
-    //
+
     // [TestMethod]
     // public void Delete_DeletesClientAssociationsFromDatabase_ClientList()
     // {
