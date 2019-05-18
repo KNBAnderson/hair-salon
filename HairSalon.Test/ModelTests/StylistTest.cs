@@ -13,6 +13,10 @@ namespace HairSalon.Tests
             DBConfiguration.ConnectionString = "server=localhost;user id=root;port=8889;database=katlin_anderson_test;default command timeout=50;";
         }
 
+        public void Dispose()
+        {
+          Stylist.ClearAll();
+        }
 
         [TestMethod]
         public void GetAll_ReturnsEmptyStylistList_0()
@@ -142,11 +146,24 @@ namespace HairSalon.Tests
             CollectionAssert.AreEqual(testList, result);
         }
 
+        [TestMethod]
+       public void Delete_DeletesStylistAssociationsFromDatabase_StylistList()
+       {
+         //Arrange
+         Specialty testSpecialty = new Specialty("Hair");
+         testSpecialty.Save();
+         string testName = "Sally";
+         Stylist testStylist = new Stylist(testName, "Always");
+         testStylist.Save();
 
-      public void Dispose()
-      {
-          Stylist.ClearAll();
-      }
+         //Act
+         testStylist.AddSpecialty(testSpecialty);
+         testStylist.Delete();
+         List<Stylist> resultSpecialtyStylists = testSpecialty.GetStylists();
+         List<Stylist> testSpecialtyStylists = new List<Stylist> {};
 
+         //Assert
+         CollectionAssert.AreEqual(testSpecialtyStylists, resultSpecialtyStylists);
+       }
     }
   }
