@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body class="container">
-    <h1>@Model["stylist"].Name's clients include:</h1>
+    <h1>All current clients:</h1>
 
     <ul>
-    @if (Model["clientList"].Count == 0)
+    @if (Model.Count == 0)
     {
       <p>This stylist doesn't have clients yet :(!</p>
     }
-    @if(Model["clientList"].Count != 0)
+    @if(Model.Count != 0)
     {
       @foreach (Client client in Model)
       {
@@ -25,7 +25,7 @@
     }
     </ul>
 
-    <a href="/stylist/@Model["stylist"].Id/client/new">Add a client this stylist's list</a>
+    <a href="/stylist">View list of stylists</a>
 
     </html>
   </body>
