@@ -200,21 +200,21 @@ namespace HairSalon.Models
       }
     }
 
-    // public void Delete()
-    // {
-    //     MySqlConnection conn = DB.Connection();
-    //     conn.Open();
-    //     var cmd = conn.CreateCommand() as MySqlCommand;
-    //     cmd.CommandText = @"DELETE FROM recipes WHERE id = @recipe_id; DELETE FROM cuisines_recipes WHERE recipe_id = @recipe_id;";
-    //     MySqlParameter recipeIdParameter = new MySqlParameter();
-    //     recipeIdParameter.ParameterName = "@recipe_id";
-    //     recipeIdParameter.Value = this.Id;
-    //     cmd.Parameters.Add(recipeIdParameter);
-    //     cmd.ExecuteNonQuery();
-    //     if (conn != null)
-    //     {
-    //       conn.Close();
-    //     }
-    // }
+    public void Delete()
+    {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE FROM client WHERE id = @client_id;";
+        MySqlParameter clientIdParameter = new MySqlParameter();
+        clientIdParameter.ParameterName = "@client_id";
+        clientIdParameter.Value = this.Id;
+        cmd.Parameters.Add(clientIdParameter);
+        cmd.ExecuteNonQuery();
+        if (conn != null)
+        {
+          conn.Close();
+        }
+    }
   }
 }
