@@ -11,9 +11,6 @@ namespace HairSalon.Models
     public int StylistId {get; set;}
     public DateTime NextAppointment {get; set;}
 
-
-    //public string ImageURL {get; set;}
-
     public Client (string name, int stylistId, DateTime nextAppointment, int id = 0) {
       Name = name;
       StylistId = stylistId;

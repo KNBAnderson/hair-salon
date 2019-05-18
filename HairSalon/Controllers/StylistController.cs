@@ -41,7 +41,6 @@ namespace HairSalon.Controllers
       return View(model);
     }
 
-
     [HttpPost("/stylist/{stylistId}/client")]
     public ActionResult Create(string name, int stylistId, DateTime nextAppointment)
     {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2019 at 01:52 AM
+-- Generation Time: May 17, 2019 at 11:15 PM
 -- Server version: 10.1.39-MariaDB
 -- PHP Version: 7.1.29
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `katlin_anderson_test`
 --
+CREATE DATABASE IF NOT EXISTS `katlin_anderson_test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `katlin_anderson_test`;
 
 -- --------------------------------------------------------
 
