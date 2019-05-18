@@ -4,27 +4,27 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title>List of Stylists</title>
+    <title>List of specialties</title>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body class="container">
-    <h1>Pick a stylist to see a list of their clients</h1>
-    <a href="/stylist/new" class="btn btn-dark">Or click here to add a new stylist to the list</a>
-    <ul>
+    <h1>Specialties</h1>
     @if (Model.Count == 0)
     {
-      <p>There are no stylists in your list yet!</p>
+      <p>There are no specialties in your list yet!</p>
     }
     @if(Model.Count != 0)
     {
-      @foreach (Stylist stylist in Model)
+      @foreach (Specialty specialty in Model)
       {
 
-        <li><a href='/stylist/@stylist.Id'>@stylist.Name</a></li>
+        <li><a href='/specialty/@specialty.Id'>@specialty.Name</a></li>
       }
     }
     </ul>
 
+    <a href="/specialty/new" class="btn btn-dark">Or click here to add a new specialty</a>
+    <ul>
     </html>
   </body>

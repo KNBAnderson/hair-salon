@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Add Stylist</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='~/css/styles.css' type="text/css">
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Add a new specialty</h1>
+    </div>
+    <form action="/specialty" method="post">
+    <label for="name">What is the specialty?</label>
+    <input id="name" name="name" type="text" placeholder="bowlcuts" required><br>
+
+    <button type="submit" class="btn btn-dark">Add new stylist specialty</button>
+    </form>
+    <br>
+    <a href="/specialty" class="btn btn-dark">Back to your list of specialties</a>
+    <a href="/" class="btn btn-dark">Back to homepage</a>
+  </div>
+</body>
+</html>

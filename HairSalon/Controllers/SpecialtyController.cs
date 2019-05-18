@@ -24,6 +24,7 @@ namespace HairSalon.Controllers
     [HttpPost("/specialty")]
     public ActionResult Create(string name)
     {
+      
       Specialty newSpecialty = new Specialty(name);
       newSpecialty.Save();
       List<Specialty> allSpecialties = Specialty.GetAll();
