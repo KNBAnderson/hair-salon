@@ -56,6 +56,25 @@ namespace HairSalon.Tests
       //Assert
       CollectionAssert.AreEqual(newList, result);
     }
+//Equals problem again
+    [TestMethod]
+    public void FindStylistList_ReturnsClientsWithTheSameStylistIdFromDatabase_ClientList()
+    {
+      //Arrange
+      DateTime newDateTime = new DateTime(2001);
+      int testStylistId = 1;
+      Client firstClient = new Client("Sally", testStylistId, newDateTime);
+      Client secondClient = new Client("Holly", 2, newDateTime);
+      firstClient.Save();
+      secondClient.Save();
+
+      //Act
+      List<Client> sameStylists = Client.FindStylistList(testStylistId);
+      List<Client> testList = new List<Client> {firstClient};
+      //Assert
+      CollectionAssert.AreEqual(testList, sameStylists);
+    }
+
 //Something is clearly wrong with my Equals override
     [TestMethod]
     public void Find_ReturnsCorrectClientFromDatabase_Client()

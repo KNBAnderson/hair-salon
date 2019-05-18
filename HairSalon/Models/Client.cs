@@ -170,5 +170,50 @@ namespace HairSalon.Models
       }
       return foundClient;
     }
+
+    public void Edit(string newName, DateTime newNextAppointment)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE client SET name = @newName, nextAppointment = @newNextAppointment WHERE id = @searchId;";
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = Id;
+      cmd.Parameters.Add(searchId);
+      MySqlParameter name = new MySqlParameter();
+      name.ParameterName = "@newName";
+      name.Value = newName;
+      cmd.Parameters.Add(name);
+      MySqlParameter nextAppointment = new MySqlParameter();
+      nextAppointment.ParameterName = "@newNextAppointment";
+      nextAppointment.Value = newNextAppointment;
+      cmd.Parameters.Add(nextAppointment);
+      cmd.ExecuteNonQuery();
+      Name = newName;
+      NextAppointment = newNextAppointment;
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    // public void Delete()
+    // {
+    //     MySqlConnection conn = DB.Connection();
+    //     conn.Open();
+    //     var cmd = conn.CreateCommand() as MySqlCommand;
+    //     cmd.CommandText = @"DELETE FROM recipes WHERE id = @recipe_id; DELETE FROM cuisines_recipes WHERE recipe_id = @recipe_id;";
+    //     MySqlParameter recipeIdParameter = new MySqlParameter();
+    //     recipeIdParameter.ParameterName = "@recipe_id";
+    //     recipeIdParameter.Value = this.Id;
+    //     cmd.Parameters.Add(recipeIdParameter);
+    //     cmd.ExecuteNonQuery();
+    //     if (conn != null)
+    //     {
+    //       conn.Close();
+    //     }
+    // }
   }
 }

@@ -130,6 +130,45 @@ namespace HairSalon.Models
       return foundStylist;
     }
 
+    // public void Edit(string newName)
+    // {
+    //   MySqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //   var cmd = conn.CreateCommand() as MySqlCommand;
+    //   cmd.CommandText = @"UPDATE client SET name = @newName WHERE id = @searchId;";
+    //   MySqlParameter searchId = new MySqlParameter();
+    //   searchId.ParameterName = "@searchId";
+    //   searchId.Value = Id;
+    //   cmd.Parameters.Add(searchId);
+    //   MySqlParameter name = new MySqlParameter();
+    //   name.ParameterName = "@newName";
+    //   name.Value = newName;
+    //   cmd.Parameters.Add(name);
+    //   Name = newName;
+    //   conn.Close();
+    //   if (conn != null)
+    //   {
+    //     conn.Dispose();
+    //   }
+    // }
+
+    // public void Delete()
+    // {
+    //     MySqlConnection conn = DB.Connection();
+    //     conn.Open();
+    //     var cmd = conn.CreateCommand() as MySqlCommand;
+    //     cmd.CommandText = @"DELETE FROM recipes WHERE id = @recipe_id; DELETE FROM cuisines_recipes WHERE recipe_id = @recipe_id;";
+    //     MySqlParameter recipeIdParameter = new MySqlParameter();
+    //     recipeIdParameter.ParameterName = "@recipe_id";
+    //     recipeIdParameter.Value = this.Id;
+    //     cmd.Parameters.Add(recipeIdParameter);
+    //     cmd.ExecuteNonQuery();
+    //     if (conn != null)
+    //     {
+    //       conn.Close();
+    //     }
+    // }
+
     public List<Specialty> GetSpecialties()
    {
      MySqlConnection conn = DB.Connection();
