@@ -24,9 +24,20 @@ namespace HairSalon.Controllers
     [HttpPost("/specialty")]
     public ActionResult Create(string name)
     {
-      
-      Specialty newSpecialty = new Specialty(name);
-      newSpecialty.Save();
+      List<Specialty> checkDatabase = Specialty.GetAll();
+      int repeatCount = 0;
+      foreach(Specialty specialty in checkDatabase)
+      {
+        if(specialty.Name.ToLower() == name.ToLower())
+        {
+          repeatCount++;
+        }
+      }
+      if (repeatCount == 0)
+      {
+        Specialty newSpecialty = new Specialty(name);
+        newSpecialty.Save();
+      }
       List<Specialty> allSpecialties = Specialty.GetAll();
       return RedirectToAction("Index", allSpecialties);
     }
