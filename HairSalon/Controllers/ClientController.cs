@@ -25,6 +25,13 @@ namespace HairSalon.Controllers
       model.Add("stylist", stylist);
       return View(model);
     }
+
+    [HttpGet("/client")]
+    public ActionResult Index()
+    {
+      List<Client> allClients = Client.GetAll();
+      return View(allClients);
+    }
   }
 }
 
