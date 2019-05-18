@@ -136,22 +136,23 @@ namespace HairSalon.Tests
       Assert.AreEqual(testId, result);
     }
 
-    // [TestMethod]
-    // public void Edit_UpdatesClientInDatabase_String()
-    // {
-    //   //Arrange
-    //   DateTime newDateTime = new DateTime(2001);
-    //   Client testClient = new Client("Sally", 1, newDateTime);
-    //   testClient.Save();
-    //   string secondName = "Sandy";
-    //
-    //   //Act
-    //   testClient.Edit(secondName);
-    //   string result = Client.Find(testClient.Id).Name;
-    //
-    //   //Assert
-    //   Assert.AreEqual(secondName, result);
-    // }
+    [TestMethod]
+    public void Edit_UpdatesClientInDatabase_String()
+    {
+      //Arrange
+      DateTime dateTime = new DateTime(2001);
+      Client testClient = new Client("Sally", 1, dateTime);
+      testClient.Save();
+      string secondName = "Sandy";
+      DateTime newDateTime = new DateTime(2004);
+
+      //Act
+      testClient.Edit(secondName, newDateTime);
+      string result = Client.Find(testClient.Id).Name;
+
+      //Assert
+      Assert.AreEqual(secondName, result);
+    }
 
     // [TestMethod]
     // public void Delete_DeletesClientAssociationsFromDatabase_ClientList()

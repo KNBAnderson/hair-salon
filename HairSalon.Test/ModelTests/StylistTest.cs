@@ -81,6 +81,22 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
+        public void Edit_UpdatesStylistInDatabase_String()
+        {
+          //Arrange
+          Stylist testStylist = new Stylist("Sally", "Whenever she feels like it");
+          testStylist.Save();
+          string secondName = "Sandy";
+
+          //Act
+          testStylist.Edit(secondName);
+          string result = Stylist.Find(testStylist.Id).Name;
+
+          //Assert
+          Assert.AreEqual(secondName, result);
+        }
+
+        [TestMethod]
         public void GetSpecialties_GetSpecialtiesOfStylistInDatabase_StylistList()
         {
             //Arrange
