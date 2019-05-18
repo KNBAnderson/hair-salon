@@ -32,9 +32,54 @@ namespace HairSalon.Controllers
       List<Client> allClients = Client.GetAll();
       return View(allClients);
     }
+
+    [HttpGet("/client/delete")]
+    public ActionResult DeleteAll()
+    {
+      Client.ClearAll();
+      List<Client> allClients = Client.GetAll();
+      return RedirectToAction("Index", allClients);
+    }
+
+    [HttpGet("/client/{clientId}/delete")]
+    public ActionResult Destroy(int clientId)
+    {
+      Client client = Client.Find(clientId);
+      Console.WriteLine(client.Name);
+      client.Delete();
+      List<Client> allClients = Client.GetAll();
+      return RedirectToAction("Index", allClients);
+    }
   }
 }
 
+
+
+    // [HttpGet("/items/{id}/edit")]
+    // public ActionResult Edit(int id, int categoryId)
+    // {
+    //   Dictionary<string, object> model = new Dictionary<string, object>();
+    //   Console.WriteLine(categoryId);
+    //   Category category = Category.Find(categoryId);
+    //   model.Add("itemCategories", category);
+    //   Item selectedItem = Item.Find(id);
+    //   model.Add("selectedItem", selectedItem);
+    //   return View(model);
+    // }
+    //
+    // [HttpPost("/items/{id}")]
+    // public ActionResult Update(int id, string newDescription)
+    // {
+    //   Item selectedItem = Item.Find(id);
+    //   Dictionary<string, object> model = new Dictionary<string, object>();
+    //   selectedItem.Edit(newDescription);
+    //   List<Category> itemCategories = selectedItem.GetCategories();
+    //   List<Category> allCategories = Category.GetAll();
+    //   model.Add("itemCategories", itemCategories);
+    //   model.Add("selectedItem", selectedItem);
+    //   model.Add("allCategories", allCategories);
+    //   return View("Show", model);
+    // }
 
    // [HttpGet("/stylist/{stylistId}/client/{clientId}/edit")]
    // public ActionResult Edit(int stylistId, int clientId)
@@ -59,9 +104,3 @@ namespace HairSalon.Controllers
    //   return View("Show", model);
    // }
    //
-   // [HttpPost("/client/delete")]
-   // public ActionResult DeleteAll()
-   // {
-   //   Client.ClearAll();
-   //   return View();
-   // }

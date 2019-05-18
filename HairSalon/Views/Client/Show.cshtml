@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title>View Clien Details</title>
+    <title>View Client Details</title>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
@@ -16,7 +16,10 @@
         <li>@Model["client"].Name's next appointment is on @Model["client"].NextAppointment with @Model["stylist"].Name.</li>
     </ul>
 
-    <a href="/stylist/@Model["stylist"].Id/client" class="btn btn-dark">Return to @Model["stylist"].Name's client list</a>
+    <a href="/stylist/@Model["stylist"].Id" class="btn btn-dark">Return to @Model["stylist"].Name's client list</a>
     <a href="/stylist" class="btn btn-dark">Return to list of stylists</a>
+    <a href="/client/@Model["client"].Id/edit" class="btn btn-dark">Edit @Model["client"].Name's details</a>
+    <a href="/client/@Model["client"].Id/delete" class="btn btn-dark">Delete @Model["client"].Name from the client list</a>
+
     </html>
   </body>
