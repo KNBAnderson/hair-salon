@@ -38,6 +38,10 @@ namespace HairSalon.Controllers
       model.Add("stylist", selectedStylist);
       List<Client> allClients = Client.FindStylistList(stylistId);
       model.Add("clientList", allClients);
+      List<Specialty> stylistSpecialty = selectedStylist.GetSpecialties();
+      model.Add("stylistSpecialty", stylistSpecialty);
+      List<Specialty> allSpecialties = Specialty.GetAll();
+      model.Add("allSpecialties", allSpecialties);
       return View(model);
     }
 
@@ -89,5 +93,14 @@ namespace HairSalon.Controllers
       model.Add("stylist", selectedStylist);
       return View("Show", model);
     }
+
+    [HttpPost("/items/{itemId}/categories/new")]
+     public ActionResult AddSpecialty(int specialtyId, int categoryId)
+     {
+       Item item = Item.Find(itemId);
+       Category category = Category.Find(categoryId);
+       item.AddCategory(category);
+       return RedirectToAction("Show",  new { id = itemId });
+     }
   }
 }

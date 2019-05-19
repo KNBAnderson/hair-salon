@@ -2,17 +2,17 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <title>View @Model["stylist"].Name's clients</title>
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="~/css/styles.css">
-  </head>
-  <body class="container">
-    <h1>@Model["stylist"].Name</h1>
-    <p>@Model["stylist"].Name is available @Model["stylist"].DaysAvailable</p>
+<head>
+  <meta charset='utf-8'>
+  <title>View @Model["stylist"].Name's clients</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body class="container">
+  <h1>@Model["stylist"].Name</h1>
+  <p>@Model["stylist"].Name is available @Model["stylist"].DaysAvailable</p>
 
-    <ul>
+  <ul>
     @if (Model["clientList"].Count == 0)
     {
       <p>This stylist doesn't have clients yet!</p>
@@ -24,12 +24,38 @@
         <li><a href='/stylist/@client.StylistId/client/@client.Id'>@client.Name</a></li>
       }
     }
-    </ul>
 
-    <a href="/stylist/@Model["stylist"].Id/client/new" class="btn btn-dark">Add a client this stylist's list</a>
-    <a href="/stylist/@Model["stylist"].Id/edit" class="btn btn-dark">Edit this stylists information</a>
-    <a href="/stylist" class="btn btn-dark">Return to list of stylists</a>
-    <a href="/" class="btn btn-dark">Return to home page </a>
-    <a href="/stylist/@Model["stylist"].Id/delete" class="btn btn-danger">Delete this stylist and their clients</a>
-    </html>
-  </body>
+  </ul>
+
+  @if (@Model.Count != 0)
+  {
+    <h4>The stylist has these specialties:</h4>
+    <ul>
+      @foreach (Specialty specialty in @Model["stylistSpecialty"])
+      {
+        <li>@specialty.Name</li>
+      }
+    </ul>
+  }
+
+
+  <h4>Add a specialties to this stylist:</h4>
+
+  <form action='/stylist/@Model["stylist"].Id/specialty/new' method='post'>
+    <label for='specialtyId'>Select a specialty</label>
+    <select id='specialtyId' name='specialtyId' type='text'>
+      @foreach (Specialty specialty in @Model["allSpecialties"])
+      {
+        <option value='@specialty.Id'>@specialty.Name</option>
+      }
+    </select>
+    <button type='submit'>Add</button>
+  </form>
+
+  <a href="/stylist/@Model["stylist"].Id/client/new" class="btn btn-dark">Add a client this stylist's list</a>
+  <a href="/stylist/@Model["stylist"].Id/edit" class="btn btn-dark">Edit this stylists information</a>
+  <a href="/stylist" class="btn btn-dark">Return to list of stylists</a>
+  <a href="/" class="btn btn-dark">Return to home page </a>
+  <a href="/stylist/@Model["stylist"].Id/delete" class="btn btn-danger">Delete this stylist and their clients</a>
+  </html>
+</body>
