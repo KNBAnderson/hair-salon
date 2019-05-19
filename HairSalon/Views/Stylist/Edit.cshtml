@@ -13,16 +13,14 @@
 <body class="container">
   <h1>Hair salon</h1>
 
-  <!-- <h2>Edit client: @Model["client"].Name</h2>
+  <h2>Edit client: @Model.Name</h2>
 
-  <form action="/stylist/@Model["stylist"].Id/client/@Model["client"].Id" method="post">
+  <form action="/stylist/@Model.Id" method="post">
     <label for="newName">Name:</label>
-    <input type="text" name="newName" placeholder="@Model["client"].Name" required><br>
-    <label for="newNextAppointment">Next appointment:</label>
-    <input type="date" name="newNextAppointment" required>
+    <input type="text" name="newName" placeholder="@Model.Name" required><br>
     <button type="submit">Edit</button>
   </form>
 
-  <h4><a href="/stylist/@Model["stylist"].Id/client/@Model["client"].Id" class="btn btn-dark">Return to previous page</a></h4>
-</body> -->
+  <h4><a href="/stylist/@Model.Id/" class="btn btn-dark">Return to previous page</a></h4>
+</body>
 </html>

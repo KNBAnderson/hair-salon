@@ -71,12 +71,23 @@ namespace HairSalon.Controllers
       List<Stylist> allStylists = Stylist.GetAll();
       return RedirectToAction("Index", allStylists);
     }
-    //Stretch Goals
-    // [HttpPost("/stylist/{id}/delete")]
-    // public ActionResult Destroy(int id)
-    // {
-    //   Stylist.RemoveStylist(id);
-    //   return RedirectToAction("Index");
-    // }
+    [HttpGet("/stylist/{stylistId}/edit")]
+    public ActionResult Edit(int stylistId)
+    {
+      Stylist stylist = Stylist.Find(stylistId);
+      return View(stylist);
+    }
+
+    [HttpPost("/stylist/{stylistId}")]
+    public ActionResult Update(int stylistId, string newName)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist selectedStylist = Stylist.Find(stylistId);
+      selectedStylist.Edit(newName);
+      List<Client> allClients = Client.FindStylistList(stylistId);
+      model.Add("clientList", allClients);
+      model.Add("stylist", selectedStylist);
+      return View("Show", model);
+    }
   }
 }
