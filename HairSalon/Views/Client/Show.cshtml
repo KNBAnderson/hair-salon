@@ -18,8 +18,8 @@
 
     <a href="/stylist/@Model["stylist"].Id" class="btn btn-dark">Return to @Model["stylist"].Name's client list</a>
     <a href="/stylist" class="btn btn-dark">Return to list of stylists</a>
-    <a href="/client/@Model["client"].Id/edit" class="btn btn-dark">Edit @Model["client"].Name's details</a>
-    <a href="/client/@Model["client"].Id/delete" class="btn btn-dark">Delete @Model["client"].Name from the client list</a>
+    <a href="/stylist/@Model["stylist"].Id/client/@Model["client"].Id/edit" class="btn btn-dark">Edit @Model["client"].Name's details</a>
+    <a href="/client/@Model["client"].Id/delete" class="btn btn-danger">Delete @Model["client"].Name from the client list</a>
 
     </html>
   </body>

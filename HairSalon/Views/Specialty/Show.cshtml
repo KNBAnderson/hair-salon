@@ -1,0 +1,32 @@
+@using HairSalon.Models;
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>@Model["specialty"].Name details</title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="~/css/styles.css">
+  </head>
+  <body class="container">
+    <h1>Stylists that specialize in @Model["specialty"].Name:</h1>
+
+    <ul>
+    @if (Model["stylistList"].Count == 0)
+    {
+      <p>No stylists specialize in this yet</p>
+    }
+    @if(Model["stylistList"].Count != 0)
+    {
+      @foreach (Stylist stylist in Model["stylistList"])
+      {
+        <li><a href='/specialty/@stylist.Id'>@stylist.Name</a></li>
+      }
+    }
+    </ul>
+
+    <a href="/stylist" class="btn btn-dark">Return to list of stylists</a>
+    <a href="/" class="btn btn-dark">Return to home page </a>
+    <a href="/specialty/@Model["specialty"].Id/delete" class="btn btn-danger">Delete this specialty</a>
+    </html>
+  </body>

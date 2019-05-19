@@ -1,0 +1,28 @@
+@using HairSalon.Models;
+@using System.Collections.Generic;
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Edit client details</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="~/css/styles.css">
+</head>
+
+<body class="container">
+  <h1>Hair salon</h1>
+
+  <h2>Edit client: @Model["client"].Name</h2>
+
+  <form action="/stylist/@Model["stylist"].Id/client/@Model["client"].Id" method="post">
+    <label for="newName">Name:</label>
+    <input type="text" name="newName" placeholder="@Model["client"].Name" required><br>
+    <label for="newNextAppointment">Next appointment:</label>
+    <input type="date" name="newNextAppointment" required>
+    <button type="submit">Edit</button>
+  </form>
+
+  <h4><a href="/stylist/@Model["stylist"].Id/client/@Model["client"].Id" class="btn btn-dark">Return to previous page</a></h4>
+</body>
+</html>

@@ -50,57 +50,33 @@ namespace HairSalon.Controllers
       List<Client> allClients = Client.GetAll();
       return RedirectToAction("Index", allClients);
     }
+
+    [HttpGet("/stylist/{stylistId}/client/{clientId}/edit")]
+    public ActionResult Edit(int stylistId, int clientId)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist stylist = Stylist.Find(stylistId);
+      model.Add("stylist", stylist);
+      Client client = Client.Find(clientId);
+      model.Add("client", client);
+      return View(model);
+    }
+
+    [HttpPost("/stylist/{stylistId}/client/{clientId}")]
+    public ActionResult Update(int stylistId, int clientId, string newName, DateTime newNextAppointment)
+    {
+      Client selectedClient = Client.Find(clientId);
+      if (newName == "")
+      {
+        newName = selectedClient.Name;
+      }
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      selectedClient.Edit(newName, newNextAppointment);
+      Stylist selectedStylist = Stylist.Find(stylistId);
+      model.Add("client", selectedClient);
+      model.Add("stylist", selectedStylist);
+      return View("Show", model);
+    }
+
   }
 }
-
-
-
-    // [HttpGet("/items/{id}/edit")]
-    // public ActionResult Edit(int id, int categoryId)
-    // {
-    //   Dictionary<string, object> model = new Dictionary<string, object>();
-    //   Console.WriteLine(categoryId);
-    //   Category category = Category.Find(categoryId);
-    //   model.Add("itemCategories", category);
-    //   Item selectedItem = Item.Find(id);
-    //   model.Add("selectedItem", selectedItem);
-    //   return View(model);
-    // }
-    //
-    // [HttpPost("/items/{id}")]
-    // public ActionResult Update(int id, string newDescription)
-    // {
-    //   Item selectedItem = Item.Find(id);
-    //   Dictionary<string, object> model = new Dictionary<string, object>();
-    //   selectedItem.Edit(newDescription);
-    //   List<Category> itemCategories = selectedItem.GetCategories();
-    //   List<Category> allCategories = Category.GetAll();
-    //   model.Add("itemCategories", itemCategories);
-    //   model.Add("selectedItem", selectedItem);
-    //   model.Add("allCategories", allCategories);
-    //   return View("Show", model);
-    // }
-
-   // [HttpGet("/stylist/{stylistId}/client/{clientId}/edit")]
-   // public ActionResult Edit(int stylistId, int clientId)
-   // {
-   //   Dictionary<string, object> model = new Dictionary<string, object>();
-   //   Stylist stylist = Stylist.Find(stylistId);
-   //   model.Add("stylist", stylist);
-   //   Client client = Client.Find(clientId);
-   //   model.Add("client", client);
-   //   return View(model);
-   // }
-   //
-   // [HttpPost("/stylist/{stylistId}/client/{clientId}")]
-   // public ActionResult Update(int stylistId, int clientId, string newDescription)
-   // {
-   //   Client client = Client.Find(clientId);
-   //   client.Edit(newDescription);
-   //   Dictionary<string, object> model = new Dictionary<string, object>();
-   //   Stylist stylist = Stylist.Find(stylistId);
-   //   model.Add("stylist", stylist);
-   //   model.Add("client", client);
-   //   return View("Show", model);
-   // }
-   //
