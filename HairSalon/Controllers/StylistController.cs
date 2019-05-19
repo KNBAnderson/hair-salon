@@ -93,14 +93,26 @@ namespace HairSalon.Controllers
       model.Add("stylist", selectedStylist);
       return View("Show", model);
     }
-
-    [HttpPost("/items/{itemId}/categories/new")]
-     public ActionResult AddSpecialty(int specialtyId, int categoryId)
+//item= stylist cate=specialty
+    [HttpPost("/stylist/{stylistId}/specialty/new")]
+     public ActionResult AddSpecialty(int specialtyId, int stylistId)
      {
-       Item item = Item.Find(itemId);
-       Category category = Category.Find(categoryId);
-       item.AddCategory(category);
-       return RedirectToAction("Show",  new { id = itemId });
+       Stylist stylist = Stylist.Find(stylistId);
+       Specialty newSpecialty = Specialty.Find(specialtyId);
+       // List<Specialty> searchList = stylist.GetSpecialties();
+       int count = 0;
+       foreach (Specialty specialty in stylist.GetSpecialties())
+       {
+         if (specialty.Name == newSpecialty.Name)
+         {
+           count++;
+         }
+       }
+       if (count == 0)
+       {
+         stylist.AddSpecialty(newSpecialty);
+       }
+       return RedirectToAction("Show",  new { id = stylistId });
      }
   }
 }

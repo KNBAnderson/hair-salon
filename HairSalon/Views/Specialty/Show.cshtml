@@ -25,6 +25,19 @@
     }
     </ul>
 
+    <h4>Add a stylists to this specialty:</h4>
+
+    <form action='/specialty/@Model["specialty"].Id/stylist/new' method='post'>
+      <label for='stylistId'>Select a stylist</label>
+      <select id='stylistId' name='stylistId' type='text'>
+        @foreach (Stylist stylist in @Model["allStylists"])
+        {
+          <option value='@stylist.Id'>@stylist.Name</option>
+        }
+      </select>
+      <button type='submit'>Add</button>
+    </form>
+
     <a href="/stylist" class="btn btn-dark">Return to list of stylists</a>
     <a href="/" class="btn btn-dark">Return to home page </a>
     <a href="/specialty/@Model["specialty"].Id/delete" class="btn btn-danger">Delete this specialty</a>

@@ -33,7 +33,7 @@
     <ul>
       @foreach (Specialty specialty in @Model["stylistSpecialty"])
       {
-        <li>@specialty.Name</li>
+        <li><a href="/specialty/@specialty.Id">@specialty.Name</a></li>
       }
     </ul>
   }
